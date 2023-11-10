@@ -169,7 +169,6 @@ public class BigFraction {
     }
     this.num = this.num.multiply(multiplier);
     BigInteger i = this.denom.min(this.num);
-    System.out.println("this num before" + this.num);
     // until the divider reach 1
     while (i.compareTo(start) > 0) {
       // if the denominator and numerator are both divisible by one number
