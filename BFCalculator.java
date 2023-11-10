@@ -8,7 +8,7 @@ import java.io.PrintWriter;
 public class BFCalculator {
 
   // +--------+-------------------------------------------------------
-  // | Fields |
+  // | F  ields |
   // +--------+
 
   /**

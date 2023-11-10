@@ -1,3 +1,4 @@
+import java.io.PrintWriter;
 import java.math.BigInteger;
 
 /**
@@ -6,6 +7,7 @@ import java.math.BigInteger;
  * including basic evaluation method.
  */
 public class BigFraction {
+  PrintWriter pen = new PrintWriter(System.out, true);
   /*
    * (1) Denominators are always positive. Therefore, negative fractions are
    * represented
@@ -163,11 +165,21 @@ public class BigFraction {
   public void simplify() {
     BigInteger start = new BigInteger("0");
     BigInteger multiplier = new BigInteger("1");
-    if ((this.num.signum() < 0 || this.denom.signum() < 0) &&
-            !(this.num.signum() < 0 && this.denom.signum() < 0)) {
+    // both num and non is negative
+    if (this.num.signum() < 0 && this.denom.signum() < 0) {
+      this.num = this.num.multiply(new BigInteger("-1"));
+      this.denom = this.denom.multiply(new BigInteger("-1"));
+      // denom is positive, num is negative
+    } else if (this.num.signum() < 0 && this.denom.signum() > 0) {
+      this.num = this.num.multiply(new BigInteger("-1"));
+      multiplier = new BigInteger("-1");
+      // denom is negative, num is positive
+    } else if (this.num.signum() > 0 && this.denom.signum() < 0) {
+      this.denom = this.denom.multiply(new BigInteger("-1"));
       multiplier = new BigInteger("-1");
     }
-    this.num = this.num.multiply(multiplier);
+    System.out.println(this.num + "/" + this.denom);
+    pen.println(multiplier);
     BigInteger i = this.denom.min(this.num);
     // until the divider reach 1
     while (i.compareTo(start) > 0) {
